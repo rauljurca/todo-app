@@ -1,0 +1,50 @@
+<div class="container text-center">
+  <div class="row text-center p-2 h2 d-flex justify-content-center">
+    Edit Task
+  </div>
+
+  <div class="row">
+    <form (ngSubmit)="onEditSubmit()">
+      <div class="row" [formGroup]="editForm">
+        <input
+          formControlName="text"
+          type="text"
+          class="form-control input text-center m-1"
+          id="floatingInput"
+          placeholder="Edit your Task"
+        />
+      </div>
+      <div *ngIf="editForm.invalid && editErrors" class="alert--msg">
+        <p
+          class="alert font-monospace text-left opacity-50 p-0 border-0 input-errors"
+          *ngIf="editForm.get('text').errors['required'] "
+        >
+          ! Task can't be empty !
+        </p>
+
+        <p
+          class="alert font-monospace text-left opacity-50 p-0 border-0 input-errors"
+          *ngIf="editForm.get('text').errors['minlength'] "
+        >
+          ! Task must have at least 3 characters !
+        </p>
+      </div>
+
+      <div class="row d-flex mt-5 justify-content-around">
+        <button
+          class="btn btn-outline-danger col-2 m-1 p-1 d-flex justify-content-evenly align-items-center"
+          type="button"
+          (click)="closeEdit()"
+        >
+          <i class="material-icons">cancel</i>
+        </button>
+        <button
+          class="btn btn-outline-success col-2 m-1 p-1 d-flex justify-content-evenly align-items-center"
+          type="submit"
+        >
+          <i class="material-icons"> done</i>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

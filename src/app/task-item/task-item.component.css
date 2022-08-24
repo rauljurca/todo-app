@@ -1,0 +1,22 @@
+/* .action--btn {
+    visibility: hidden;
+  } */
+  .todo--item:hover .action--btn {
+    opacity: 0.8;
+    visibility: visible;
+  }
+  .todo--item{
+      background-color: #34aaff48
+  }
+  .todo--item:hover{
+      background-color: #34aaff;
+      color: white;
+  }
+  
+  /* Class added only when the value of complete is true */
+  .complete {
+    color: rgb(158, 158, 158);
+    background-color: #7cc8ff48
+
+  }
+  

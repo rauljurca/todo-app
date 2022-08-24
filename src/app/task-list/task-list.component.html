@@ -1,0 +1,62 @@
+<div class="container-fluid p-5 header">
+  <div class="h1 text-center title">To do</div>
+</div>
+
+<div class="container">
+  <section class="form">
+    <form class="text-center my-5" (ngSubmit)="taskFormSubmit()">
+      <div class="d-flex justify-content-evenly align-items-center">
+        <div class="col-8 p-3">
+          <div class="form-floating m-auto" [formGroup]="taskForm">
+            <input
+              formControlName="name"
+              type="text"
+              class="form-control input"
+              id="floatingInput"
+              placeholder="Type the new task"
+            />
+            <label for="floatingInput">New Task ...</label>
+          </div>
+        </div>
+        <div class="col-4-xs p-3">
+          <button
+            class="btn btn-outline-success btn-task m-auto p-auto d-flex justify-content-evenly align-items-center"
+            type="submit"
+          >
+            <i class="material-icons">add</i>
+            <span> Add Task</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="alert--msg" *ngIf="taskForm.invalid && showNewTaskErrors">
+        <p
+          class="alert font-monospace text-left opacity-50 p-0 border-0 input-errors"
+          *ngIf="taskForm.get('name').errors['required'] "
+        >
+          ! Task can't be empty !
+        </p>
+
+        <p
+          class="alert font-monospace text-left opacity-50 p-0 border-0 input-errors"
+          *ngIf="taskForm.get('name').errors['minlength'] "
+
+        >
+          ! Task must have at least 3 characters !
+        </p>
+      </div>
+    </form>
+  </section>
+</div>
+
+<section class="task--list">
+  <div class="container">
+    <app-task-item
+      *ngFor="let task of tasks"
+      [task]="task"
+      (taskClicked)="taskCompleted(task)"
+      (editClicked)="editTask(task)"
+      (deleteClicked)="deleteTask(task)"
+    ></app-task-item>
+  </div>
+</section>
